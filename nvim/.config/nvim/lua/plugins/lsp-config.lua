@@ -23,9 +23,25 @@ return {
       lspconfig.tailwindcss.setup({
         capabilities = capabilities
       })
-      lspconfig.ruby_lsp.setup({
+      lspconfig.ts_ls.setup({
+        capabilities = capabilities
+      })
+      lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
-        cmd = { "/home/typecraft/.asdf/shims/ruby-lsp" }
+        on_attach = function(_, bufnr)
+          vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end,
+        settings = {
+          ["rust-analyzer"] = {
+
+            check = {
+              command = "clippy"
+            },
+            rustfmt = {
+              extraArgs = { "+nightly" }
+            },
+          }
+        }
       })
       lspconfig.html.setup({
         capabilities = capabilities
