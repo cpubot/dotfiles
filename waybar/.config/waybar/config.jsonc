@@ -12,12 +12,12 @@
     "escape": true,
     "interval": 5,
     "tooltip": false,
-    "exec": "playerctl metadata --format='{{ title }}'",
+    "exec": "playerctl metadata --format='{{ title }} - {{ artist }}'",
     "on-click": "playerctl play-pause",
     "max-length": 50
   },
   "tray": {
-    "icon-size": 13,
+    "icon-size": 14,
     "spacing": 10
   },
   "power-profiles-daemon": {
