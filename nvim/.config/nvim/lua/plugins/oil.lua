@@ -1,8 +1,10 @@
 return {
   "stevearc/oil.nvim",
+  lazy = true,
+  keys = {
+    { "-", function() require("oil").toggle_float() end, desc = "Open Oil File Explorer" },
+  },
   config = function()
-    local oil = require("oil")
-    oil.setup()
-    vim.keymap.set("n", "-", oil.toggle_float, {})
+    require("oil").setup()
   end,
 }

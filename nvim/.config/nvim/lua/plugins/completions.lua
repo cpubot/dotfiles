@@ -1,16 +1,36 @@
 return {
+  -- Completion source for LSP
   {
-    "hrsh7th/cmp-nvim-lsp"
+    "hrsh7th/cmp-nvim-lsp",
+    lazy = true,
+    event = "InsertEnter",
   },
+
+  -- LuaSnip and related plugins
   {
     "L3MON4D3/LuaSnip",
+    lazy = true,
+    event = "InsertEnter",
     dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
+      {
+        "saadparwaiz1/cmp_luasnip",
+        lazy = true,
+      },
+      {
+        "rafamadriz/friendly-snippets",
+        lazy = true,
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+      },
     },
   },
+
+  -- nvim-cmp (Main Completion Plugin)
   {
     "hrsh7th/nvim-cmp",
+    lazy = true,
+    event = "InsertEnter",
     config = function()
       local cmp = require("cmp")
       require("luasnip.loaders.from_vscode").lazy_load()
@@ -34,7 +54,7 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "luasnip" }, -- For luasnip users.
+          { name = "luasnip" },
         }, {
           { name = "buffer" },
         }),

@@ -1,7 +1,9 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = true,
     build = ":TSUpdate",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       local config = require("nvim-treesitter.configs")
       config.setup({
