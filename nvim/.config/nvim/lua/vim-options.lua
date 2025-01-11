@@ -13,6 +13,12 @@ vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
+-- Decrease pane width
+vim.keymap.set("n", "<leader><", ":vertical resize -5<CR>", { desc = "Decrease pane width" })
+
+-- Increase pane width
+vim.keymap.set("n", "<leader>>", ":vertical resize +5<CR>", { desc = "Increase pane width" })
+
 -- Move selected lines up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
