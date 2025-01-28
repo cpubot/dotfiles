@@ -49,6 +49,18 @@ return {
           on_attach(client, bufnr)
         end,
       })
+      lspconfig.eslint.setup({
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+          on_attach(client, bufnr)
+        end,
+      })
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
         on_attach = on_attach,
@@ -78,6 +90,7 @@ return {
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
       vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, {})
+      vim.keymap.set("n", "<leader>ge", vim.diagnostic.open_float, { desc = "Show diagnostics" })
     end,
   },
 }
